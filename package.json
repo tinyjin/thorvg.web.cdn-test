@@ -1,0 +1,19 @@
+{
+  "name": "thorvg.web.cdn-test",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Checks @thorvg/webcanvas and @thorvg/lottie-player on npm, UNPKG, jsDelivr and esm.sh",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node src/run.mjs",
+    "serve": "node src/serve.mjs",
+    "test:webcanvas": "node src/run.mjs webcanvas",
+    "test:lottie-player": "node src/run.mjs lottie-player"
+  },
+  "dependencies": {
+    "playwright": "^1.62.0"
+  }
+}
