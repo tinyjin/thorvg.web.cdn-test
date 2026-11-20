@@ -125,9 +125,8 @@ async function runCase(browser, suite, c, origin, version, live) {
       if (!first.isolated) problem('page is not cross-origin isolated');
       const minWorkers = suite.minWorkers(c);
       if (ev.workers.length < minWorkers) problem(`spawned ${ev.workers.length} workers, expected >= ${minWorkers}`);
-      const sameOrigin = c.cdn === 'self';
-      const wrongKind = ev.workers.filter((u) => (sameOrigin ? !u.startsWith(origin) : !u.startsWith('blob:')));
-      if (wrongKind.length) problem(`worker URL is not ${sameOrigin ? 'the same-origin bundle' : 'a blob'}: ${wrongKind[0]}`);
+      const nonBlob = ev.workers.filter((u) => !u.startsWith('blob:'));
+      if (nonBlob.length) problem(`worker URL is not a blob: ${nonBlob[0]}`);
     }
 
     const errors = [...ev.errors, ...first.errors];
